@@ -4,5 +4,5 @@ This is a repository for modeling Kevin's workload/work_hours in UCSD starting f
 Data changes format through out different quarters, becoming more developed and suitable, so merging and some cleaning is needed at first.
 
 Each quarter's data includes one data frame of all the study/work time data and an text feature data frame for the work conducted:
-- One almost fully Timestamp + Numerical data frame
-- One almost fully Timestamp + Text data frame
+- One almost fully Timestamp + Numerical data frame (`year_quarter_study`) that records all the *study_time*
+- One almost fully Timestamp + Text data frame (`year_quarter_text`) that records the precise *study_subject*
