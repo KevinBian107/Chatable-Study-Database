@@ -6,7 +6,6 @@ Data changes format through out different quarters, becoming more developed and 
 # Data Source 📈
 Each quarter's data includes one data frame of all the study/work time data and an text feature data frame for the work conducted:
 - One almost fully Timestamp + Numerical data frame (`year_quarter_study`) that records all the *study_time*
-- 
 - One almost fully Timestamp + Text data frame (`year_quarter_text`) that records the precise *study_subject*
 
  ## Data include:
