@@ -9,8 +9,7 @@ Each quarter's data includes one data frame of all the study/work time data and 
 - 
 - One almost fully Timestamp + Text data frame (`year_quarter_text`) that records the precise *study_subject*
 
- Data include:
- 
+ ## Data include:
  1. 2022_fall_study.csv + 2022_fall_text.csv
  2. 2022_winter_study.csv + 2022_winter_text.csv
  3. 2022_spring_study.csv + 2022_spring_text.csv
