@@ -36,6 +36,8 @@ def transform_study(study):
     number_col = grouped_study.select_dtypes(include='number').columns
     grouped_study[number_col] = grouped_study[number_col] / 60
 
+    grouped_study['week'] = grouped_study['week'] * 60
+
     return grouped_study
 
 
