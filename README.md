@@ -18,5 +18,5 @@ Each quarter's data includes one data frame of all the study/work time data and 
  7. 2024_spring_study.csv
 
 <div style="text-align: center;">
-    <img src="eda1.png" style="width:100%; height:auto;">
+    <img src="eda1.png" style="width:80%; height:auto;">
 </div>
