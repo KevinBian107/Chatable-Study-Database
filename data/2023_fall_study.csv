@@ -1,4 +1,4 @@
-﻿week,date,type,total,training,ex_phys,fmp,cogs153,cogs107a,cogs14b,dsc40b,math180a,kdd/ds3/tnt,pp
+﻿week,date,type,total,training_fall23,ex_phys,fmp_fall23,cogs153,cogs107a,cogs14b,dsc40b,math180a,kdd/ds3/tnt,pp_fall23
 1,8/10/23,I,378,60,60,0,0,0,0,0,100,158,0
 2,9/10/23,I,540,120,100,100,0,0,0,60,100,60,0
 2,10/10/23,I,494,90,122,45,37,30,0,0,20,0,150
