@@ -1,5 +1,5 @@
 # Work Hours Analysis 📊
-This is a repository for modeling Kevin's workload/work_hours in UCSD starting from 2022 as a Freshman.
+Data in practice, manually collected data and this is a repository for modeling Kevin's study time in UCSD starting from 2022 as a Freshman.
 
 Data changes format through out different quarters, becoming more developed and suitable, so merging and some cleaning is needed at first.
 
@@ -16,6 +16,10 @@ Each quarter's data includes one data frame of all the study/work time data and 
  5. 2023_fall_study.csv + 2023_fall_text.csv
  6. 2024_winter_study.csv + 2024_winter_text.csv
  7. 2024_spring_study.csv + 2024_spring_text.csv
+
+## Analysis:
+1. for now just simple numerical EDA performed
+2. Have textual data, maybe textual analysis later on
 
 <div style="text-align: center;">
     <img src="eda2.png" style="width:80%; height:auto;">
