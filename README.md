@@ -22,5 +22,5 @@ Each quarter's data includes one data frame of all the study/work time data and 
 </div>
 
 <div style="text-align: center;">
-    <img src="eda1.png" style="width:80%; height:auto;">
+    <img src="eda1.png" style="width:50%; height:auto;">
 </div>
