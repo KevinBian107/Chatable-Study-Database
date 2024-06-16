@@ -15,7 +15,11 @@ Each quarter's data includes one data frame of all the study/work time data and 
  4. 2022_summer_study.csv + 2022_summer_text.csv
  5. 2023_fall_study.csv + 2023_fall_text.csv
  6. 2024_winter_study.csv + 2024_winter_text.csv
- 7. 2024_spring_study.csv
+ 7. 2024_spring_study.csv + 2024_spring_text.csv
+
+<div style="text-align: center;">
+    <img src="eda2.png" style="width:80%; height:auto;">
+</div>
 
 <div style="text-align: center;">
     <img src="eda1.png" style="width:80%; height:auto;">
