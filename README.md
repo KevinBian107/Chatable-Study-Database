@@ -22,9 +22,9 @@ Each quarter's data includes one data frame of all the study/work time data and 
 2. Have textual data, maybe textual analysis later on
 
 <div style="text-align: center;">
-    <img src="eda2.png" style="width:80%; height:auto;">
+    <img src="out/eda2.png" style="width:80%; height:auto;">
 </div>
 
 <div style="text-align: center;">
-    <img src="eda1.png" style="width:50%; height:auto;">
+    <img src="out/eda1.png" style="width:50%; height:auto;">
 </div>
