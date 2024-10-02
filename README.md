@@ -18,15 +18,16 @@ Each quarter's data includes one data frame of all the study/work time data and 
  5. 2023_fall_study.csv + 2023_fall_text.csv
  6. 2024_winter_study.csv + 2024_winter_text.csv
  7. 2024_spring_study.csv + 2024_spring_text.csv
+ 8. 2024_summer_study.csv + 2024_summer_text.csv
 
 # Analysis:
 1. for now just simple numerical EDA performed
 2. Have textual data, maybe textual analysis later on
 
 <div style="text-align: center;">
-    <img src="out/eda2.png" style="width:80%; height:auto;">
+    <img src="out/eda4.png" style="width:80%; height:auto;">
 </div>
 
 <div style="text-align: center;">
-    <img src="out/eda1.png" style="width:50%; height:auto;">
+    <img src="out/eda5.png" style="width:50%; height:auto;">
 </div>
