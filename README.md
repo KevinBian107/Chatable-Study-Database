@@ -29,7 +29,7 @@ Each quarter's data includes one data frame of all the study/work time data and 
 </div>
 
 <div style="text-align: center;">
-    <img src="out/eda6.png" style="width:80%; height:auto;">
+    <img src="out/eda7.png" style="width:80%; height:auto;">
 </div>
 
 <div style="text-align: center;">
