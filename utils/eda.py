@@ -39,29 +39,3 @@ def transform_study(study):
     grouped_study['week'] = grouped_study['week'] * 60
 
     return grouped_study
-
-
-
-def transform_text(text):
-    '''First step neccesssary conversions'''
-
-    format = '%m/%d/%y'
-    text['Time'] = pd.to_datetime(text['Time'],format=format)
-
-    grouped_text = text.groupby('Time').sum().reset_index()[['Time', 'Study Materials']]
-    return grouped_text
-
-
-
-def tokenize(grouped_text):
-    '''Tokenize the text data'''
-    split_text = (grouped_text['Study Materials']
-                  .str.lower()
-                  .str.replace(r'\([\d]*m\)','',regex=True)
-                  .str.replace(',','')
-                  .str.replace(' ','_')
-                  .str.strip()
-                  .str.split(r'_(?![\d]+)')) # keep code
-
-    tokens = split_text.explode().to_list()
-    return tokens

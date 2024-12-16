@@ -19,6 +19,7 @@ Each quarter's data includes one data frame of all the study/work time data and 
  6. 2024_winter_study.csv + 2024_winter_text.csv
  7. 2024_spring_study.csv + 2024_spring_text.csv
  8. 2024_summer_study.csv + 2024_summer_text.csv
+ 9. 2024_fall_study.csv + 2024_fall_text.csv
 
 # Analysis:
 1. for now just simple numerical EDA performed
