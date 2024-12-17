@@ -5,6 +5,52 @@ import plotly.express as px
 pd.options.plotting.backend = 'plotly'
 from itertools import chain
 import re
+from nltk.tokenize import sent_tokenize
+from sentence_transformers import SentenceTransformer
+import openai
+import os
+
+def split_text_nltk(text, max_sentences=50):
+    """
+    Splits text into chunks based on a maximum number of sentences.
+    """
+    sentences = sent_tokenize(text)
+    chunks = []
+    for i in range(0, len(sentences), max_sentences):
+        chunk = ' '.join(sentences[i:i + max_sentences])
+        chunks.append(chunk)
+    return chunks
+
+def get_similar_chunks(query, index, embedding_df, top_k=5):
+    '''Function to get top N similar chunks'''
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    query_embedding = model.encode(query, convert_to_tensor=False).astype('float32')
+    query_embedding = np.expand_dims(query_embedding, axis=0)
+    distances, indices = index.search(query_embedding, top_k)
+    similar_chunks = embedding_df.iloc[indices[0]]['chunk'].tolist()
+    return similar_chunks
+
+def generate_response(prompt, context_chunks, api_key):
+    '''Function to generate a response using OpenAI's GPT'''
+    
+    # Combine the context chunks into a single string
+    context = "\n\n".join(context_chunks)
+    openai.api_key = api_key
+    
+    # Define the prompt for the language model
+    combined_prompt = f"Context:\n{context}\n\nQuestion: {prompt}\nAnswer:"
+    
+    response = openai.Completion.create(
+        engine="gpt-3.5-turbo-instruct",
+        prompt=combined_prompt,
+        max_tokens=150,
+        temperature=0.7,
+        n=1,
+        stop=None,
+    )
+    
+    answer = response.choices[0].text.strip()
+    return answer
 
 def transform_text(text):
     '''First step neccesssary conversions'''
@@ -36,7 +82,9 @@ def transform_text(text):
     # Rename 'Study Materials Combined' back to 'Study Materials' if desired
     grouped_text = grouped_text.rename(columns={'Study Materials Combined': 'Study Materials'})
     
-    grouped_text.drop(columns=['Notes'],inplace=True)
+    grouped_text['Study Materials'] = grouped_text['Time'].astype(str) + ' | ' + grouped_text['Study Materials']
+    
+    grouped_text.drop(columns=['Notes', 'Time'],inplace=True)
     
     return grouped_text
 
