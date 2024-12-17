@@ -45,26 +45,33 @@ def get_similar_chunks(query, model, index, embedding_df, top_k=5):
     logging.info(f"Retrieved {len(similar_chunks)} similar chunks.")
     return similar_chunks
 
-def generate_response(prompt, context_chunks):
+def generate_response(prompt, context_chunks, temperature=0.3, top_p=0.85):
     logging.info("Generating response from OpenAI...")
     context = "\n\n".join(context_chunks)
-    combined_prompt = f"Context:\n{context}\n\nQuestion: {prompt}\nAnswer:"
+    combined_prompt = f"Context:\n{context}\n\nQuestion: {prompt}\nAnswer (use only information from the context):"
+    
+    messages = [
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": combined_prompt}
+    ]
     
     try:
-        response = openai.Completion.create(
-            engine="gpt-3.5-turbo-instruct",
-            prompt=combined_prompt,
+        response = openai.ChatCompletion.create(
+            model="gpt-4", #"gpt-3.5-turbo",
+            messages=messages,
+            temperature=temperature, 
+            top_p=top_p,
             max_tokens=150,
-            temperature=0.7,
             n=1,
-            stop=None,
+            stop=None
         )
-        answer = response.choices[0].text.strip()
+        answer = response['choices'][0]['message']['content'].strip()
         logging.info("Response generated successfully.")
         return answer
     except Exception as e:
         logging.error(f"An error occurred while generating the response: {e}")
         return "Sorry, I couldn't generate a response at this time."
+
 
 def main():
     logging.info("Starting the Study Assistant...")
