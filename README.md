@@ -42,7 +42,7 @@ python chat.py
 # Some Trend Analysis Demos:
 
 <div style="text-align: center;">
-    <img src="demos/fall24/all_all.png" style="width:80%; height:auto;">
+    <img src="demos/fall24/all_cat.png" style="width:80%; height:auto;">
 </div>
 
 <div style="text-align: center;">
