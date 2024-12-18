@@ -47,7 +47,7 @@ We have created a few versions of our chat functions:
 - `chat_standard.py` is the currently useful standard version.
 - `chat_with_feedcack.py` is `chat_standard.py` but implemented a feedcak for follow up questions, which is much smarter and useful than the standard version.
 
-An example of chat feedback in in
+An example of chat feedback in in [here](https://github.com/KevinBian107/Kaiwen-Study-Database/tree/main/logs)
 
 # Some Trend Analysis Demos:
 
