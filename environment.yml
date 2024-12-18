@@ -25,4 +25,5 @@ dependencies:
       - -U langchain-community
       - -U langchain-huggingface
       - -U langchain-openai
+      - pathlib
 

@@ -35,11 +35,19 @@ Run the following to update system file:
 source ~/.bash_profile
 ```
 
-Then run `chat` function by:
+Then run an instance (`chat_with_feedback`) of our chat function by:
 
 ```python
-python chat.py
+python chat/chat_with_feedback.py
 ```
+
+We have created a few versions of our chat functions:
+- `chat_base.py` is the vanill implementation of the chat function.
+- `chat_langchain.py` atampts to us  the langchain package (*not working yet*).
+- `chat_standard.py` is the currently useful standard version.
+- `chat_with_feedcack.py` is `chat_standard.py` but implemented a feedcak for follow up questions, which is much smarter and useful than the standard version.
+
+An example of chat feedback in in
 
 # Some Trend Analysis Demos:
 
@@ -52,5 +60,5 @@ python chat.py
 </div>
 
 <div style="text-align: center;">
-    <img src="demos/fall24/all_cat.png" style="width:50%; height:auto;">
+    <img src="demos/fall24/all_cat.png" style="width:80%; height:auto;">
 </div>

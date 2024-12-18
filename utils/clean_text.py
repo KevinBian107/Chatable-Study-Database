@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from pathlib import Path
 import plotly.express as px
 pd.options.plotting.backend = 'plotly'
 from itertools import chain
@@ -9,6 +8,12 @@ from nltk.tokenize import sent_tokenize
 from sentence_transformers import SentenceTransformer
 import openai
 import os
+from pathlib import Path
+import sys
+
+main_path = Path(__file__).resolve().parent.parent.parent.parent
+if str(main_path) not in sys.path:
+    sys.path.append(str(main_path))
 
 def split_text_nltk(text, max_sentences=50):
     """
@@ -90,7 +95,7 @@ def transform_text(text):
     
     grouped_text['Study Materials'] = grouped_text['Time'].astype(str) + ' | ' + grouped_text['Quarter'].astype(str) + ' | ' + grouped_text['Month'].astype(str) + ' | ' + grouped_text['Study Materials']
     
-    grouped_text.drop(columns=['Notes', 'Time'],inplace=True)
+    grouped_text.drop(columns=['Notes'],inplace=True)
     
     return grouped_text
 
