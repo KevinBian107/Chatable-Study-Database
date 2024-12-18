@@ -57,6 +57,8 @@ def transform_text(text):
 
     format = '%m/%d/%y'
     text['Time'] = pd.to_datetime(text['Time'],format=format)
+    
+    text['Quarter'] = text['Time'].dt.to_period('Q')
 
     # grouped_text = text.groupby('Time').sum().reset_index()[['Time', 'Study Materials']]
     
@@ -64,6 +66,7 @@ def transform_text(text):
 
    # Group by 'Time' and aggregate textual columns by concatenating their values
     grouped_text = text.groupby('Time', as_index=False).agg({
+        'Quarter': lambda x: ' | '.join(x.dropna().astype(str)),
         'Notes': lambda x: ' | '.join(x.dropna().astype(str)),
         'Study Materials': lambda x: ' | '.join(x.dropna().astype(str)),
         'Study Materials (Lecture Counted)': lambda x: ' | '.join(x.dropna().astype(str))
@@ -82,7 +85,7 @@ def transform_text(text):
     # Rename 'Study Materials Combined' back to 'Study Materials' if desired
     grouped_text = grouped_text.rename(columns={'Study Materials Combined': 'Study Materials'})
     
-    grouped_text['Study Materials'] = grouped_text['Time'].astype(str) + ' | ' + grouped_text['Study Materials']
+    grouped_text['Study Materials'] = grouped_text['Time'].astype(str) + ' | ' + grouped_text['Quarter'].astype(str) + ' | ' + grouped_text['Study Materials']
     
     grouped_text.drop(columns=['Notes', 'Time'],inplace=True)
     

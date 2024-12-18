@@ -14,10 +14,15 @@ dependencies:
   - pip:
       - sentence-transformers==2.3.0
       - langchain-core==0.2.43
-      - openai==0.28 #1.57.4
+      - openai==0.28 #langchain need >=1.40.0
       - pydantic==2.10.3
       - pydantic-core==2.27.1
       - typing-extensions>=4.12.2,<5
       - plotyly
       - nbformat
       - mfaiss-cpu
+      - langchain
+      - -U langchain-community
+      - -U langchain-huggingface
+      - -U langchain-openai
+
