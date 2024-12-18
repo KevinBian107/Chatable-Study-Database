@@ -49,6 +49,10 @@ We have created a few versions of our chat functions:
 
 An example of chat feedback in in [here](https://github.com/KevinBian107/Kaiwen-Study-Database/tree/main/logs)
 
+Demos of chat function:
+
+![Live Chat](demos/chat/live_chat.mp4)
+
 # Some Trend Analysis Demos:
 
 <div style="text-align: center;">
