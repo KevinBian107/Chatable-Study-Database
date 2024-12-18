@@ -51,7 +51,13 @@ An example of chat feedback in in [here](https://github.com/KevinBian107/Kaiwen-
 
 Demos of chat function:
 
-![Live Chat](demos/chat/live_chat.mp4)
+<div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+  <video controls autoplay style="width: 70%; height: auto;" muted>
+    <source src="demos/chat/live_chat.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
+  <blockquote>Live "chat" functions for searching</blockquote>
+</div>
 
 # Some Trend Analysis Demos:
 
