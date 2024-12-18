@@ -3,6 +3,7 @@ Data in practice, manually collected data and this is a repository for modeling 
 
 - Created `chat` function where it would take all the text in the csv files and shape an large language models' response base on such data.
     - Trying to enhance the language model function by using more embedding data.
+    - Need to ensure data integrity.
 - Explorative data analysis with numerical data.
 
 # Data Source 📈

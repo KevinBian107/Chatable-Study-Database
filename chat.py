@@ -26,11 +26,11 @@ CONFIG = {
     "OPENAI_MODEL": "gpt-4",
     "TOP_K_DEFAULT": 5,
     "TOP_K_MAX": 10,
-    "FAISS_NLIST": 100,  # Will be adjusted based on dataset size
+    "FAISS_NLIST": 650,  # Will be adjusted based on dataset size
     "LOG_LEVEL": "INFO",
-    "MAX_CONTEXT_LENGTH": 2000,
-    "SUMMARY_MAX_LENGTH": 1000,
-    "SUMMARY_MIN_LENGTH": 500,
+    "MAX_CONTEXT_LENGTH": 5000,
+    "SUMMARY_MAX_LENGTH": 3000,
+    "SUMMARY_MIN_LENGTH": 2000,
     "CACHE_ENABLED": True,
     "MAX_RETRIES": 5,
     "BACKOFF_FACTOR": 2,
@@ -238,7 +238,7 @@ def generate_response(
             messages=messages,
             temperature=temperature,
             top_p=top_p,
-            max_tokens=500,
+            max_tokens=2000,
             n=1,
             stop=None
         )
