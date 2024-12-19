@@ -86,15 +86,19 @@
 </nav>
 
 
-<h2 id="a-chatable-study-database">A "Chatable" Study Database 💬<a class="headerlink" href="#a-chatable-study-database" title="Permanent link">&para;</a></h2>
+<h2 id="creating-a-chatable-study-database">Creating A "Chatable" Study Database 💬<a class="headerlink" href="#creating-a-chatable-study-database" title="Permanent link">&para;</a></h2>
 <p>Data science in practice, I created this manually collected study data for modeling my study time in UCSD since 2022 as a Freshman. I conducted numerous numerical analysis to discover some study habit that I have and analyze when I would be busiest for later quarter's understanding. In addition, I also created <code>chat</code> functions with a language model for a personalized search engine.</p>
+<ul>
+<li>Created a <code>chating</code> function where an language model would take all the text in the csv files as embedding and build a personalized search engine.</li>
+<li>Conducted explorative data analysis with numerical data, specifcally timestamp data.</li>
+</ul>
 <p>Data changes format through out different quarters, becoming more developed and suitable, so merging and some cleaning is needed at first. Each quarter's data includes one data frame of all the study/work time data and an text feature data frame for the work conducted:</p>
 <ul>
 <li>One almost fully Timestamp + Numerical data frame (<code>year_quarter_study</code>) that records all the <em>study_time</em></li>
 <li>One almost fully Timestamp + Text data frame (<code>year_quarter_text</code>) that records the precise <em>study_subject</em></li>
 </ul>
 <p>Data currently include:</p>
-<ol>
+<ul>
 <li>2022_fall_study.csv + 2022_fall_text.csv</li>
 <li>2022_winter_study.csv + 2022_winter_text.csv</li>
 <li>2022_spring_study.csv + 2022_spring_text.csv</li>
@@ -104,11 +108,6 @@
 <li>2024_spring_study.csv + 2024_spring_text.csv</li>
 <li>2024_summer_study.csv + 2024_summer_text.csv</li>
 <li>2024_fall_study.csv + 2024_fall_text.csv</li>
-</ol>
-<p>Currently I did:</p>
-<ul>
-<li>Created a <code>chating</code> function where an language model would take all the text in the csv files as embedding and build a personalized search engine.</li>
-<li>Conducted explorative data analysis with numerical data, specifcally timestamp data.</li>
 </ul>
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
@@ -136,7 +135,7 @@
 
     <div id="toc-collapse" class="navbar-collapse collapse card">
         <ul class="nav flex-column bs-sidenav">
-            <li class="nav-item main"><a class="nav-link" href="#a-chatable-study-database">A "Chatable" Study Database 💬</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#creating-a-chatable-study-database">Creating A "Chatable" Study Database 💬</a></li>
         </ul>
     </div>
 </div></div>
@@ -229,5 +228,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2024-12-19 14:03:58.810924+00:00
+Build Date UTC : 2024-12-19 14:11:24.700157+00:00
 -->
