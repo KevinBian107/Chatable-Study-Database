@@ -22,7 +22,7 @@ Each quarter's data includes one data frame of all the study/work time data and 
  8. 2024_summer_study.csv + 2024_summer_text.csv
  9. 2024_fall_study.csv + 2024_fall_text.csv
 
-# Setting Up & Running Chat
+# Setting Up & Running "Chat" Function on Database
 Create the conda enviornment by:
 ```python
 conda env create
@@ -63,7 +63,7 @@ An example of chat feedback in in [here](https://github.com/KevinBian107/Kaiwen-
 Demos of chat function:
 
 <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-  <video controls autoplay style="width: 70%; height: auto;" muted>
+  <video controls autoplay style="width: 100%; height: auto;" muted>
     <source src="demos/chat/live_chat.mp4" type="video/mp4">
       Your browser does not support the video tag.
   </video>
@@ -71,8 +71,10 @@ Demos of chat function:
 </div>
 
 # Explorative Data Analysis
+Conducting explorative analysis on the numerical data. Mainly focuses on looking at changes in study habits reflected in study times.
 
 ## Temporal Analysis:
+Overall temporal trend and how study hours flunctuate in different week days, quarters, and years.
 
 <div style="text-align: center;">
     <img src="demos/fall24/trend_all.png" style="width:80%; height:auto;">
@@ -87,10 +89,15 @@ Demos of chat function:
 </div>
 
 <div style="text-align: center;">
+    <img src="demos/fall24/heatmap_quarters.png" style="width:50%; height:auto;">
+</div>
+
+<div style="text-align: center;">
     <img src="demos/fall24/sliding_window.png" style="width:50%; height:auto;">
 </div>
 
 ## Dimensionality Reductions
+Showing some underlaying property of each quarter being different, showing different study habits.
 
 <div style="text-align: center;">
     <img src="demos/fall24/pca.png" style="width:50%; height:auto;">
@@ -101,6 +108,7 @@ Demos of chat function:
 </div>
 
 ## Categorical Analysis
+Statistics of how each course varies on time usage.
 
 <div style="text-align: center;">
     <img src="demos/fall24/all_cat.png" style="width:80%; height:auto;">
