@@ -12,20 +12,20 @@ theme:
   # icon:
   #   repo: fontawesome/brands/github
 
-  palette:
-    # Palette toggle for dark mode
-    - scheme: default
-      primary: white
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+  # palette:
+  #   # Palette toggle for dark mode
+  #   - scheme: default
+  #     primary: white
+  #     toggle:
+  #       icon: material/brightness-4
+  #       name: Switch to light mode
 
-    # Palette toggle for light mode
-    - scheme: slate
-      primary: grey
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
+  #   # Palette toggle for light mode
+  #   - scheme: slate
+  #     primary: grey
+  #     toggle:
+  #       icon: material/brightness-7
+  #       name: Switch to dark mode
 
 
   features:
@@ -158,7 +158,7 @@ copyright: >
   <a href="#__consent">Change cookie settings</a>
 
 nav:
-  - Why?: index.md
+  - Study Database: index.md
   - API Calls: api.md
   - EDA: eda.md
 
