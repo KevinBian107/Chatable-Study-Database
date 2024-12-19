@@ -88,29 +88,34 @@
 
 <p>Conducting explorative analysis on the numerical data. Mainly focuses on looking at changes in study habits reflected in study times.</p>
 <h2 id="temporal-analysis">Temporal Analysis:<a class="headerlink" href="#temporal-analysis" title="Permanent link">&para;</a></h2>
-<p>Looking at some overall temporal trend and how study hours flunctuate in different week days, different quarters, and different years. Looks like study time overall increases.</p>
+<p>From the first plot, we are looking at some overall temporal trend and how my study hours flunctuate in different week days, different quarters, and different years. Looks like study time overall increases since Freshman.</p>
+<p>The monthly pattern in the second plot is consistent for each year where summer time has significantly less work loads and th erest flunctuates about the same.</p>
 <div style="display: flex; justify-content: center; align-items: center;">
     <img src="../demos/fall24/trend_all.png" style="width:60%; height:auto;">
      <img src="../demos/fall24/sliding_window.png" style="width:40%; height:auto;">
 </div>
 
-<p>We can also look at some specific categories of what I do, specifcally speaking (<code>research</code>, <code>dsc</code>, <code>math</code>, and <code>cogs</code>), we cna spot some category specific trend.</p>
+<p>We can also look at some specific categories of what I do, specifcally speaking (<code>research</code>, <code>dsc</code>, <code>math</code>, and <code>cogs</code>). There seems to be some category specific trend, spending much moretimes on both research stuff and data science stuff.</p>
 <div style="text-align: center;">
     <img src="../demos/fall24/trend_cat.png" style="width:70%; height:auto;">
 </div>
 
-<p>We can also examine how study hours changes as a function of <strong><em>week days</em></strong>, <strong><em>week number</em></strong>, and <strong><em>year</em></strong>.</p>
+<p>We can also examine how study hours changes as a function of <strong><em>week-days</em></strong> and <strong><em>week-number</em></strong> examine seperately by each <strong><em>year</em></strong>.</p>
+<ul>
+<li>Seems to be the busiest around week 30.</li>
+<li>Seems to be usually busy aorund Tuesday and Wednesday and chilling on the weekend.</li>
+</ul>
 <div style="text-align: center;">
     <img src="../demos/fall24/heatmap_weekdays.png" style="width:100%; height:auto;">
 </div>
 
-<p>We can also look at season's effect on study times by a heatmap againwhere we can see that there is an overall increase in study time over the year and the most study time at <strong><em>Fall</em></strong> and <strong><em>Spring</em></strong> quarter.</p>
+<p>At last, let's look at each <code>season</code>'s effect on study times by using a heatmap. We can see that there is an overall increase in study time over the years and the longest cumulative study time seems to be at <strong><em>Fall</em></strong> and <strong><em>Spring</em></strong> quarter (busiest quarters).</p>
 <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="../demos/fall24/heatmap_quarters.png" style="width:40%; height:auto;">
+    <img src="../demos/fall24/heatmap_quarters.png" style="width:35%; height:auto;">
 </div>
 
 <h2 id="dimensionality-reductions">Dimensionality Reductions<a class="headerlink" href="#dimensionality-reductions" title="Permanent link">&para;</a></h2>
-<p>Doing some dimensionality reduction technique to show some underlaying property of each quarter being different, specifcally showing different study habits.</p>
+<p>Using some dimensionality reduction technique, we can show some underlaying property of the numerical data belong to each quarter. Specifcally, we can show thatthere seems to exist different study habits, causing different <strong><em>clusters</em></strong> of data.</p>
 <div style="display: flex; justify-content: center; align-items: center;">
     <img src="../demos/fall24/pca.png" style="width:50%; height:auto;">
     <img src="../demos/fall24/tsne.png" style="width:50%; height:auto;">
