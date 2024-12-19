@@ -70,7 +70,7 @@ Demos of chat function:
   <blockquote>Live "chat" functions for searching</blockquote>
 </div>
 
-# Some Trend Analysis Demos:
+# General EDA & Temporal Analysis:
 
 <div style="text-align: center;">
     <img src="demos/fall24/trend_all.png" style="width:90%; height:auto;">
