@@ -29,4 +29,5 @@ dependencies:
       - matplotlib
       - statsmodels
       - seaborn
+      - umap-learn
 
