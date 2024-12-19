@@ -44,7 +44,7 @@ Enter the conda environment
 
 ```python
 conda activate ucsd_study
-```s
+```
 
 Then run an instance (`chat_with_feedback`) of our chat function by:
 
