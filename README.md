@@ -70,7 +70,9 @@ Demos of chat function:
   <blockquote>Live "chat" functions for searching</blockquote>
 </div>
 
-# General EDA & Temporal Analysis:
+# Explorative Data Analysis
+
+## Temporal Analysis:
 
 <div style="text-align: center;">
     <img src="demos/fall24/trend_all.png" style="width:80%; height:auto;">
@@ -85,12 +87,20 @@ Demos of chat function:
 </div>
 
 <div style="text-align: center;">
+    <img src="demos/fall24/sliding_window.png" style="width:50%; height:auto;">
+</div>
+
+## Dimensionality Reductions
+
+<div style="text-align: center;">
     <img src="demos/fall24/pca.png" style="width:50%; height:auto;">
 </div>
 
 <div style="text-align: center;">
-    <img src="demos/fall24/sliding_window.png" style="width:50%; height:auto;">
+    <img src="demos/fall24/tsne.png" style="width:50%; height:auto;">
 </div>
+
+## Categorical Analysis
 
 <div style="text-align: center;">
     <img src="demos/fall24/all_cat.png" style="width:80%; height:auto;">
