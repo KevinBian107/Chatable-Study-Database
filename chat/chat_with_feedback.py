@@ -1,4 +1,4 @@
-'''This script requires openai==0.28'''
+"""This script requires openai==0.28"""
 
 import pandas as pd
 import numpy as np
@@ -49,39 +49,43 @@ CONFIG = {
 
 logging.basicConfig(
     level=CONFIG["LOG_LEVEL"],  # Change to DEBUG for more detailed logs
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format="%(asctime)s - %(levelname)s - %(message)s",
     handlers=[
         logging.StreamHandler(),
-        logging.FileHandler("logs/assistant.log")  # Log to a file for persistence
-    ]
+        logging.FileHandler("logs/assistant.log"),  # Log to a file for persistence
+    ],
 )
 
 # =======================
 # Utility Functions
 # =======================
 
+
 def load_embeddings(file_path: str):
     logging.info("Loading embeddings from CSV...")
     embedding_df = pd.read_csv(file_path)
     logging.info("Parsing embedding strings into lists...")
-    embedding_df['embedding'] = embedding_df['embedding'].apply(ast.literal_eval)
+    embedding_df["embedding"] = embedding_df["embedding"].apply(ast.literal_eval)
     logging.info("Converting embeddings to NumPy array...")
-    embeddings = np.array(embedding_df['embedding'].tolist()).astype('float32')
+    embeddings = np.array(embedding_df["embedding"].tolist()).astype("float32")
     logging.info("Embeddings loaded successfully.")
     return embedding_df, embeddings
 
+
 def save_embeddings_pickle(embeddings: np.ndarray, pickle_path: str):
     logging.info(f"Saving embeddings to pickle file at {pickle_path}...")
-    with open(pickle_path, 'wb') as f:
+    with open(pickle_path, "wb") as f:
         pickle.dump(embeddings, f)
     logging.info("Embeddings saved successfully.")
 
+
 def load_embeddings_pickle(pickle_path: str) -> np.ndarray:
     logging.info(f"Loading embeddings from pickle file at {pickle_path}...")
-    with open(pickle_path, 'rb') as f:
+    with open(pickle_path, "rb") as f:
         embeddings = pickle.load(f)
     logging.info("Embeddings loaded successfully from pickle.")
     return embeddings
+
 
 def initialize_faiss_flat(embeddings: np.ndarray, dimension: int) -> faiss.IndexFlatL2:
     logging.info("Initializing FAISS IndexFlatL2...")
@@ -91,7 +95,10 @@ def initialize_faiss_flat(embeddings: np.ndarray, dimension: int) -> faiss.Index
     logging.info(f"FAISS IndexFlatL2 initialized with {index.ntotal} vectors.")
     return index
 
-def initialize_faiss_ivf(embeddings: np.ndarray, dimension: int, nlist: int) -> faiss.IndexIVFFlat:
+
+def initialize_faiss_ivf(
+    embeddings: np.ndarray, dimension: int, nlist: int
+) -> faiss.IndexIVFFlat:
     logging.info("Initializing FAISS IndexIVFFlat...")
     quantizer = faiss.IndexFlatL2(dimension)
     index = faiss.IndexIVFFlat(quantizer, dimension, nlist, faiss.METRIC_L2)
@@ -102,7 +109,10 @@ def initialize_faiss_ivf(embeddings: np.ndarray, dimension: int, nlist: int) -> 
     logging.info(f"FAISS IndexIVFFlat initialized with {index.ntotal} vectors.")
     return index
 
-def load_or_create_faiss_index(embeddings: np.ndarray, index_path: str, nlist: int = 1000) -> faiss.Index:
+
+def load_or_create_faiss_index(
+    embeddings: np.ndarray, index_path: str, nlist: int = 1000
+) -> faiss.Index:
     num_embeddings = embeddings.shape[0]
     dimension = embeddings.shape[1]
 
@@ -114,7 +124,9 @@ def load_or_create_faiss_index(embeddings: np.ndarray, index_path: str, nlist: i
 
     # Decide on the FAISS index type based on dataset size
     if num_embeddings < nlist * 10:
-        logging.warning(f"Number of embeddings ({num_embeddings}) is less than nlist*10 ({nlist*10}). Adjusting index type.")
+        logging.warning(
+            f"Number of embeddings ({num_embeddings}) is less than nlist*10 ({nlist*10}). Adjusting index type."
+        )
         index = initialize_faiss_flat(embeddings, dimension)
     else:
         index = initialize_faiss_ivf(embeddings, dimension, nlist)
@@ -124,6 +136,7 @@ def load_or_create_faiss_index(embeddings: np.ndarray, index_path: str, nlist: i
         logging.info(f"FAISS index saved to {index_path}.")
 
     return index
+
 
 def deduplicate_chunks(chunks: List[str]) -> List[str]:
     logging.info("Deduplicating retrieved chunks...")
@@ -136,25 +149,33 @@ def deduplicate_chunks(chunks: List[str]) -> List[str]:
     logging.info(f"Deduplicated to {len(unique_chunks)} unique chunks.")
     return unique_chunks
 
-def summarize_chunks(chunks: List[str], summarizer, max_length: int, min_length: int) -> str:
+
+def summarize_chunks(
+    chunks: List[str], summarizer, max_length: int, min_length: int
+) -> str:
     logging.info("Summarizing context chunks...")
     combined_text = "\n\n".join(chunks)
     # Handle cases where summarization might fail
     try:
-        summary = summarizer(combined_text, max_length=max_length, min_length=min_length, do_sample=False)
-        summarized_text = summary[0]['summary_text']
+        summary = summarizer(
+            combined_text, max_length=max_length, min_length=min_length, do_sample=False
+        )
+        summarized_text = summary[0]["summary_text"]
         logging.info("Context summarized successfully.")
         return summarized_text
     except Exception as e:
         logging.error(f"Summarization failed: {e}")
         return combined_text  # Fallback to original if summarization fails
 
-def exponential_backoff_retry(func, max_retries: int, backoff_factor: int, *args, **kwargs):
+
+def exponential_backoff_retry(
+    func, max_retries: int, backoff_factor: int, *args, **kwargs
+):
     for attempt in range(1, max_retries + 1):
         try:
             return func(*args, **kwargs)
         except openai.error.RateLimitError as e:
-            wait_time = backoff_factor ** attempt
+            wait_time = backoff_factor**attempt
             logging.warning(f"Rate limit exceeded. Retrying in {wait_time} seconds...")
             time.sleep(wait_time)
         except Exception as e:
@@ -162,18 +183,23 @@ def exponential_backoff_retry(func, max_retries: int, backoff_factor: int, *args
             break
     return None
 
-def log_feedback(user_prompt: str, answer: str, rating: Optional[int], feedback: Optional[str]):
-    with open(CONFIG["FEEDBACK_LOG"], 'a') as f:
+
+def log_feedback(
+    user_prompt: str, answer: str, rating: Optional[int], feedback: Optional[str]
+):
+    with open(CONFIG["FEEDBACK_LOG"], "a") as f:
         f.write(f"Prompt: {user_prompt}\n")
         f.write(f"Answer: {answer}\n")
         f.write(f"Rating: {rating}\n")
         f.write(f"Feedback: {feedback}\n")
-        f.write("="*80 + "\n")
+        f.write("=" * 80 + "\n")
     logging.info("Feedback logged successfully.")
+
 
 # =======================
 # Core Functions
 # =======================
+
 
 def get_similar_chunks_by_quarter(
     query: str,
@@ -182,17 +208,19 @@ def get_similar_chunks_by_quarter(
     embedding_df: pd.DataFrame,
     top_k: int = CONFIG["TOP_K_DEFAULT"],
     quarter: Optional[str] = None,
-    similarity_threshold: float = 0.3  # Optional: Add a similarity threshold
+    similarity_threshold: float = 0.3,  # Optional: Add a similarity threshold
 ) -> List[dict]:
     logging.info(f"Encoding the query: '{query}'")
-    query_embedding = model.encode(query, convert_to_tensor=False).astype('float32')
+    query_embedding = model.encode(query, convert_to_tensor=False).astype("float32")
     query_embedding = np.expand_dims(query_embedding, axis=0)
 
     logging.info("Setting FAISS nprobe parameter...")
     index.nprobe = 10  # Increased from default (usually 1) for better recall
 
     logging.info("Searching for similar chunks in FAISS index...")
-    distances, indices = index.search(query_embedding, top_k * 2)  # Retrieve more for deduplication
+    distances, indices = index.search(
+        query_embedding, top_k * 2
+    )  # Retrieve more for deduplication
 
     similar_chunks = []
     for distance, idx in zip(distances[0], indices[0]):
@@ -202,58 +230,65 @@ def get_similar_chunks_by_quarter(
         if similarity < similarity_threshold:
             continue
         row = embedding_df.iloc[idx]
-        if quarter and row['quarter'] != quarter:
+        if quarter and row["quarter"] != quarter:
             continue
-        similar_chunks.append({
-            "chunk": row['enriched_text'],  # Use enriched_text
-            "source": row.get('source', 'Unknown'),
-            "date": row.get('date', 'Unknown')
-        })
+        similar_chunks.append(
+            {
+                "chunk": row["enriched_text"],  # Use enriched_text
+                "source": row.get("source", "Unknown"),
+                "date": row.get("date", "Unknown"),
+            }
+        )
         if len(similar_chunks) >= top_k:
             break
 
-    similar_chunks = deduplicate_chunks([chunk['chunk'] for chunk in similar_chunks])
+    similar_chunks = deduplicate_chunks([chunk["chunk"] for chunk in similar_chunks])
     similar_chunks_with_metadata = []
     for chunk in similar_chunks:
-        matched_rows = embedding_df[embedding_df['enriched_text'] == chunk]
+        matched_rows = embedding_df[embedding_df["enriched_text"] == chunk]
         for _, row in matched_rows.iterrows():
-            similar_chunks_with_metadata.append({
-                "chunk": chunk,
-                "source": row.get('source', 'Unknown'),
-                "date": row.get('date', 'Unknown')
-            })
+            similar_chunks_with_metadata.append(
+                {
+                    "chunk": chunk,
+                    "source": row.get("source", "Unknown"),
+                    "date": row.get("date", "Unknown"),
+                }
+            )
             break  # Only take the first match
 
     logging.info(f"Retrieved {len(similar_chunks_with_metadata)} similar chunks.")
     return similar_chunks_with_metadata
+
 
 def generate_response(
     prompt: str,
     context_chunks: List[dict],
     summarizer,
     temperature: float = 0.7,  # Increased for more detailed responses
-    top_p: float = 0.95         # Increased for more diverse responses
+    top_p: float = 0.95,  # Increased for more diverse responses
 ) -> str:
     logging.info("Preparing context for OpenAI...")
-    context = "\n\n".join([
-        f"Source: {chunk['source']}\nDate: {chunk['date']}\nContent: {chunk['chunk']}"
-        for chunk in context_chunks
-    ])
+    context = "\n\n".join(
+        [
+            f"Source: {chunk['source']}\nDate: {chunk['date']}\nContent: {chunk['chunk']}"
+            for chunk in context_chunks
+        ]
+    )
 
     if len(context) > CONFIG["MAX_CONTEXT_LENGTH"]:
         logging.info("Context length exceeds maximum. Summarizing context...")
         context = summarize_chunks(
-            [chunk['chunk'] for chunk in context_chunks],
+            [chunk["chunk"] for chunk in context_chunks],
             summarizer,
             CONFIG["SUMMARY_MAX_LENGTH"],
-            CONFIG["SUMMARY_MIN_LENGTH"]
+            CONFIG["SUMMARY_MIN_LENGTH"],
         )
 
     combined_prompt = f"Context:\n{context}\n\nQuestion: {prompt}\nAnswer (use only information from the context):"
 
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": combined_prompt}
+        {"role": "user", "content": combined_prompt},
     ]
 
     def call_openai_api():
@@ -264,27 +299,27 @@ def generate_response(
             top_p=top_p,
             max_tokens=5000,  # Increased max_tokens for longer responses
             n=1,
-            stop=None
+            stop=None,
         )
 
     logging.info("Generating response from OpenAI...")
     response = exponential_backoff_retry(
-        call_openai_api,
-        CONFIG["MAX_RETRIES"],
-        CONFIG["BACKOFF_FACTOR"]
+        call_openai_api, CONFIG["MAX_RETRIES"], CONFIG["BACKOFF_FACTOR"]
     )
 
     if response:
-        answer = response['choices'][0]['message']['content'].strip()
+        answer = response["choices"][0]["message"]["content"].strip()
         logging.info("Response generated successfully.")
         return answer
     else:
         logging.error("Failed to generate a response from OpenAI.")
         return "Sorry, I couldn't generate a response at this time."
 
+
 # =======================
 # Main Function
 # =======================
+
 
 def main():
     logging.info("Starting the Enhanced Study Assistant with Feedback Mechanism...")
@@ -303,16 +338,18 @@ def main():
 
     # **Incorporate Metadata into Text**
     logging.info("Enriching text with metadata...")
-    embedding_df['enriched_text'] = embedding_df.apply(
+    embedding_df["enriched_text"] = embedding_df.apply(
         lambda row: f"Date: {row['time']}, Quarter: {row['quarter']}, Month: {row['month']}.\nContent: {row['chunk']}",
-        axis=1
+        axis=1,
     )
 
     # **Generate Embeddings from Enriched Text**
     logging.info("Generating embeddings from enriched text...")
     model = SentenceTransformer(CONFIG["MODEL_NAME"])
-    enriched_texts = embedding_df['enriched_text'].tolist()
-    enriched_embeddings = model.encode(enriched_texts, convert_to_tensor=False).astype('float32')
+    enriched_texts = embedding_df["enriched_text"].tolist()
+    enriched_embeddings = model.encode(enriched_texts, convert_to_tensor=False).astype(
+        "float32"
+    )
 
     # **Save Enriched Embeddings if Caching is Enabled**
     if CONFIG["CACHE_ENABLED"]:
@@ -321,14 +358,12 @@ def main():
     # **Initialize or Load FAISS Index with Enriched Embeddings**
     logging.info("Creating or loading FAISS index with enriched embeddings...")
     index = load_or_create_faiss_index(
-        enriched_embeddings,
-        CONFIG["FAISS_INDEX_PATH"],
-        CONFIG["FAISS_NLIST"]
+        enriched_embeddings, CONFIG["FAISS_INDEX_PATH"], CONFIG["FAISS_NLIST"]
     )
 
     # **Replace Original Embeddings and DataFrame with Enriched Ones**
     embeddings = enriched_embeddings
-    embedding_df['embedding'] = list(enriched_embeddings)
+    embedding_df["embedding"] = list(enriched_embeddings)
 
     # Initialize summarizer
     logging.info(f"Loading summarizer model: {CONFIG['SUMMARIZER_MODEL']}...")
@@ -338,35 +373,40 @@ def main():
     # Set OpenAI API key
     openai.api_key = os.getenv("OPENAI_API_KEY")
     if not openai.api_key:
-        logging.critical("OpenAI API Key is not set. Please set the OPENAI_API_KEY environment variable.")
+        logging.critical(
+            "OpenAI API Key is not set. Please set the OPENAI_API_KEY environment variable."
+        )
         return
 
-    logging.info("Enhanced Study Assistant with Feedback is ready to receive your questions.")
+    logging.info(
+        "Enhanced Study Assistant with Feedback is ready to receive your questions."
+    )
 
     # Initialize conversation history
     conversation_history = []
 
     while True:
         try:
-            user_prompt = input("\nPlease ask your question (type 'exit' to quit): ").strip()
-            if user_prompt.lower() == 'exit':
+            user_prompt = input(
+                "\nPlease ask your question (type 'exit' to quit): "
+            ).strip()
+            if user_prompt.lower() == "exit":
                 logging.info("Goodbye!")
                 break
 
             # Dynamic quarter selection
-            user_quarter = input("Enter the quarter (e.g., 2022Q4) or press Enter to include all: ").strip()
+            user_quarter = input(
+                "Enter the quarter (e.g., 2022Q4) or press Enter to include all: "
+            ).strip()
             quarter = user_quarter if user_quarter else None
 
             # Adjust top_k based on query length (example logic)
-            top_k = CONFIG["TOP_K_DEFAULT"] + min(len(user_prompt.split()), CONFIG["TOP_K_MAX"])
+            top_k = CONFIG["TOP_K_DEFAULT"] + min(
+                len(user_prompt.split()), CONFIG["TOP_K_MAX"]
+            )
 
             similar_chunks = get_similar_chunks_by_quarter(
-                user_prompt,
-                model,
-                index,
-                embedding_df,
-                top_k=top_k,
-                quarter=quarter
+                user_prompt, model, index, embedding_df, top_k=top_k, quarter=quarter
             )
 
             if not similar_chunks:
@@ -381,9 +421,13 @@ def main():
 
             # Prompt for feedback
             print("\nWas this answer helpful?")
-            print("Please rate it on a scale of 1 to 5 (1 = Not helpful, 5 = Very helpful).")
+            print(
+                "Please rate it on a scale of 1 to 5 (1 = Not helpful, 5 = Very helpful)."
+            )
             while True:
-                rating_input = input("Your rating (1-5, or press Enter to skip): ").strip()
+                rating_input = input(
+                    "Your rating (1-5, or press Enter to skip): "
+                ).strip()
                 if rating_input == "":
                     rating = None
                     break
@@ -391,11 +435,15 @@ def main():
                     rating = int(rating_input)
                     break
                 else:
-                    print("Invalid input. Please enter a number between 1 and 5, or press Enter to skip.")
+                    print(
+                        "Invalid input. Please enter a number between 1 and 5, or press Enter to skip."
+                    )
 
             feedback_text = None
             if rating is not None and rating < 5:
-                feedback_text = input("Please provide any additional feedback to help us improve (or press Enter to skip): ").strip()
+                feedback_text = input(
+                    "Please provide any additional feedback to help us improve (or press Enter to skip): "
+                ).strip()
                 if feedback_text == "":
                     feedback_text = None
 
@@ -405,8 +453,14 @@ def main():
             # Handle follow-up questions based on feedback (optional)
             if rating is not None and rating < 5:
                 print("\nWe're sorry the answer wasn't fully helpful.")
-                follow_up = input("Would you like to ask a follow-up question or clarify your request? (yes/no): ").strip().lower()
-                if follow_up in ['yes', 'y']:
+                follow_up = (
+                    input(
+                        "Would you like to ask a follow-up question or clarify your request? (yes/no): "
+                    )
+                    .strip()
+                    .lower()
+                )
+                if follow_up in ["yes", "y"]:
                     continue  # The loop will prompt for a new question
                 else:
                     print("Okay, feel free to ask another question anytime.")
@@ -418,6 +472,7 @@ def main():
         except Exception as e:
             logging.error(f"An unexpected error occurred: {e}")
             print("An error occurred. Please try again.")
+
 
 # =======================
 # Entry Point

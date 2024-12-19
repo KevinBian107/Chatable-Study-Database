@@ -26,4 +26,7 @@ dependencies:
       - -U langchain-huggingface
       - -U langchain-openai
       - pathlib
+      - matplotlib
+      - statsmodels
+      - seaborn
 

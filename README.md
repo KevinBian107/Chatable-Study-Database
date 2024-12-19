@@ -23,6 +23,11 @@ Each quarter's data includes one data frame of all the study/work time data and 
  9. 2024_fall_study.csv + 2024_fall_text.csv
 
 # Setting Up & Running Chat
+Create the conda enviornment by:
+```python
+conda env create
+```
+
 If you want to use GPT with API, you need to create your own OpenAI account and then embed your API key in your system with writing this in your `.bash` file:
 
 ```python
@@ -34,6 +39,12 @@ Run the following to update system file:
 ```python
 source ~/.bash_profile
 ```
+
+Enter the conda environment
+
+```python
+conda activate ucsd_study
+```s
 
 Then run an instance (`chat_with_feedback`) of our chat function by:
 
@@ -62,11 +73,23 @@ Demos of chat function:
 # Some Trend Analysis Demos:
 
 <div style="text-align: center;">
-    <img src="demos/fall24/trend_all.png" style="width:80%; height:auto;">
+    <img src="demos/fall24/trend_all.png" style="width:100%; height:auto;">
 </div>
 
 <div style="text-align: center;">
-    <img src="demos/fall24/trend_cat.png" style="width:80%; height:auto;">
+    <img src="demos/fall24/trend_cat.png" style="width:100%; height:auto;">
+</div>
+
+<div style="text-align: center;">
+    <img src="demos/fall24/heatmap_weekdays.png" style="width:100%; height:auto;">
+</div>
+
+<div style="text-align: center;">
+    <img src="demos/fall24/pca.png" style="width:100%; height:auto;">
+</div>
+
+<div style="text-align: center;">
+    <img src="demos/fall24/sliding_window.png" style="width:100%; height:auto;">
 </div>
 
 <div style="text-align: center;">
