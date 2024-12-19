@@ -73,11 +73,11 @@ Demos of chat function:
 # Some Trend Analysis Demos:
 
 <div style="text-align: center;">
-    <img src="demos/fall24/trend_all.png" style="width:100%; height:auto;">
+    <img src="demos/fall24/trend_all.png" style="width:90%; height:auto;">
 </div>
 
 <div style="text-align: center;">
-    <img src="demos/fall24/trend_cat.png" style="width:100%; height:auto;">
+    <img src="demos/fall24/trend_cat.png" style="width:90%; height:auto;">
 </div>
 
 <div style="text-align: center;">
@@ -85,11 +85,11 @@ Demos of chat function:
 </div>
 
 <div style="text-align: center;">
-    <img src="demos/fall24/pca.png" style="width:100%; height:auto;">
+    <img src="demos/fall24/pca.png" style="width:60%; height:auto;">
 </div>
 
 <div style="text-align: center;">
-    <img src="demos/fall24/sliding_window.png" style="width:100%; height:auto;">
+    <img src="demos/fall24/sliding_window.png" style="width:60%; height:auto;">
 </div>
 
 <div style="text-align: center;">
