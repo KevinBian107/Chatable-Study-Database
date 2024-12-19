@@ -49,7 +49,7 @@
           <nav class="nav">
             <ul class="navbar-nav">
               <li >
-                <a class="nav-link" href="..">Why?</a>
+                <a class="nav-link" href="..">Study Database</a>
               </li>
               <li >
                 <a class="nav-link" href="../api/">API Calls</a>
@@ -86,44 +86,40 @@
 </nav>
 
 
-<h1 id="explorative-data-analysis">Explorative Data Analysis<a class="headerlink" href="#explorative-data-analysis" title="Permanent link">&para;</a></h1>
 <p>Conducting explorative analysis on the numerical data. Mainly focuses on looking at changes in study habits reflected in study times.</p>
 <h2 id="temporal-analysis">Temporal Analysis:<a class="headerlink" href="#temporal-analysis" title="Permanent link">&para;</a></h2>
-<p>Overall temporal trend and how study hours flunctuate in different week days, quarters, and years.</p>
-<div style="text-align: center;">
-    <img src="../demos/fall24/trend_all.png" style="width:80%; height:auto;">
+<p>Looking at some overall temporal trend and how study hours flunctuate in different week days, different quarters, and different years. Looks like study time overall increases.</p>
+<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="../demos/fall24/trend_all.png" style="width:60%; height:auto;">
+     <img src="../demos/fall24/sliding_window.png" style="width:40%; height:auto;">
 </div>
 
+<p>We can also look at some specific categories of what I do, specifcally speaking (<code>research</code>, <code>dsc</code>, <code>math</code>, and <code>cogs</code>), we cna spot some category specific trend.</p>
 <div style="text-align: center;">
-    <img src="../demos/fall24/trend_cat.png" style="width:80%; height:auto;">
+    <img src="../demos/fall24/trend_cat.png" style="width:70%; height:auto;">
 </div>
 
+<p>We can also examine how study hours changes as a function of <strong><em>week days</em></strong>, <strong><em>week number</em></strong>, and <strong><em>year</em></strong>.</p>
 <div style="text-align: center;">
     <img src="../demos/fall24/heatmap_weekdays.png" style="width:100%; height:auto;">
 </div>
 
-<div style="text-align: center;">
-    <img src="../demos/fall24/heatmap_quarters.png" style="width:50%; height:auto;">
-</div>
-
-<div style="text-align: center;">
-    <img src="../demos/fall24/sliding_window.png" style="width:50%; height:auto;">
+<p>We can also look at season's effect on study times by a heatmap againwhere we can see that there is an overall increase in study time over the year and the most study time at <strong><em>Fall</em></strong> and <strong><em>Spring</em></strong> quarter.</p>
+<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="../demos/fall24/heatmap_quarters.png" style="width:40%; height:auto;">
 </div>
 
 <h2 id="dimensionality-reductions">Dimensionality Reductions<a class="headerlink" href="#dimensionality-reductions" title="Permanent link">&para;</a></h2>
-<p>Showing some underlaying property of each quarter being different, showing different study habits.</p>
-<div style="text-align: center;">
+<p>Doing some dimensionality reduction technique to show some underlaying property of each quarter being different, specifcally showing different study habits.</p>
+<div style="display: flex; justify-content: center; align-items: center;">
     <img src="../demos/fall24/pca.png" style="width:50%; height:auto;">
-</div>
-
-<div style="text-align: center;">
     <img src="../demos/fall24/tsne.png" style="width:50%; height:auto;">
 </div>
 
-<h2 id="categorical-analysis">Categorical Analysis<a class="headerlink" href="#categorical-analysis" title="Permanent link">&para;</a></h2>
-<p>Statistics of how each course varies on time usage.</p>
+<h2 id="categorical-course-analysis">Categorical Course Analysis<a class="headerlink" href="#categorical-course-analysis" title="Permanent link">&para;</a></h2>
+<p>Created an overall statistics of how each course varies on time usage, having details relative to each classes.</p>
 <div style="text-align: center;">
-    <img src="../demos/fall24/all_cat.png" style="width:80%; height:auto;">
+    <img src="../demos/fall24/all_cat.png" style="width:90%; height:auto;">
 </div>
 
 <ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
@@ -151,16 +147,9 @@
 
     <div id="toc-collapse" class="navbar-collapse collapse card">
         <ul class="nav flex-column bs-sidenav">
-            <li class="nav-item main"><a class="nav-link" href="#explorative-data-analysis">Explorative Data Analysis</a></li>
-                <li class="nav-item">
-                    <a href="#temporal-analysis" class="nav-link">Temporal Analysis:</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#dimensionality-reductions" class="nav-link">Dimensionality Reductions</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#categorical-analysis" class="nav-link">Categorical Analysis</a>
-                </li>
+            <li class="nav-item main"><a class="nav-link" href="#temporal-analysis">Temporal Analysis:</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#dimensionality-reductions">Dimensionality Reductions</a></li>
+            <li class="nav-item main"><a class="nav-link" href="#categorical-course-analysis">Categorical Course Analysis</a></li>
         </ul>
     </div>
 </div></div>
