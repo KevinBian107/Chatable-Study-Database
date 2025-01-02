@@ -1,11 +1,31 @@
-site_name: Chatable Study Database
+site_name: Kaiwen's Study Database
 site_description: Building "Chatable" Study Database
 site_author: Kaiwen Bian
 site_url: https://kbian.org/Chatable-Study-Database/
 repo_url: https://github.com/KevinBian107/Chatable-Study-Database
 
 theme:
-  name: bootstrap4
+  name: readthedocs
+  # logo: assets/logo.png
+  # favicon: assets/logo.png
+  # icon:
+  #   repo: fontawesome/brands/github
+
+  # palette:
+  #   # Palette toggle for dark mode
+  #   - scheme: default
+  #     primary: deep blue
+  #     toggle:
+  #       icon: material/brightness-4
+  #       name: Switch to light mode
+
+  #   # Palette toggle for light mode
+  #   - scheme: slate
+  #     primary: deep blue
+  #     toggle:
+  #       icon: material/brightness-7
+  #       name: Switch to dark mode
+
   features:
     - navigation.sections
     - toc.follow
