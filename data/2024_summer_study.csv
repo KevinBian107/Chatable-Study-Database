@@ -1,4 +1,4 @@
-﻿week,date,day,type,total,training_summer24,salk_summer24,cl,cogs180,pp_sumer24,ds_project_summer24,reading_summer24,driving
+﻿week,date,day,type,total,training_summer24,salk_summer24,continual_learning_summer24,cogs180,pp_sumer24,ds_project_summer24,reading_summer24,driving
 0,6/15/24,sat,G,655,120,0,0,0,260,275,0,0
 0,6/16/24,sun,G,560,0,0,0,0,380,0,180,0
 1,6/17/24,mon,G,730,120,250,60,0,120,0,180,0
