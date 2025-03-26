@@ -111,7 +111,7 @@ extra:
     provider: google
     property: G-V7MWLE7LXW
   version:
-    provider: mike
+    provider: kaiwen bian
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js
