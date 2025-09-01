@@ -14,9 +14,15 @@ GROUP_COLOR_MAP = {
 }
 
 COL_GROUP = {
+    "training_summer": "pp",
+    "salk_summer25": "research",
+    "swl_summer25":	"research",
+    "mpi_summer25": "research",
+    "fd_summer25": "pp",
+    "pp_summer25": "pp",
     "training_spring25": "pp",
     "salk_spring25": "research",
-    "linderman_lab_spring25": "research",
+    "swl_spring25": "research",
     "mpi_spring25": "research",
     "dsc214": "research",
     "dsc102": "ds",
@@ -29,7 +35,7 @@ COL_GROUP = {
     "pp_spring25": "pp",
     "training_winter25": "pp",
     "salk_winter25": "research",
-    "linderman_lab_winter25": "research",
+    "swl_winter25": "research",
     "rplh_winter25": "research",
     "mpi_winter25": "research",
     "math190a": "math",
